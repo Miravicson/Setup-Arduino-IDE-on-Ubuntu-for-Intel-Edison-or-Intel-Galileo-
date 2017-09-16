@@ -1,0 +1,58 @@
+{When you create a bootable drive with the memory card, the memory card is partitioned}
+
+{SD card formatter could be a useful for restoring a memory card after one had used it for the galileo. the sd card formatter clears all partitions.}
+
+
+Extract the windows32 disk manager. this is used to create a bootable sd card for the linux yocto image.
+
+Extract the yocto image which is a .zip file.
+
+open the extracted folder and run the setup
+
+Select the yocto image from the extracted folder.
+Select the correct drive to be flashed
+Then click write and wait for the process to be done.
+
+This process of creating a bootable sd card for the galileo is Operating system Independent. 
+
+This implies that once the sd card is made bootable with either of , Windows;Mac or ubuntu, the bootable drive will still connect the intel Galileo to a pc irrespective of the operating system.
+
+When the process is done, you should get an alert box saying "Write Successful!"
+Eject the SD card
+
+{{{{ some problems encountered during setup.}}}}
+
+Arduino installed on ubuntu could not download the board manager for intel Galileo gen 2. it gave out this error whenever I tried to click install for the board manager.
+
+How to fix the error "Failed to set up SDK" for arduino on ubuntu
+
+The steps I have followed are:
+
+    Install the board through the arduino IDE.
+        This was accomplished through the Board manager which appears on the picture you have placed on this post.
+        After installing the board an error occured, but no worries, this will be solved later.
+
+    Modify the files which relocate sdk.
+        Open terminal ctrl + alt + T
+        Acces as root user sudo su (and enter your password)
+        Move to the following folder cd /root/.arduino15/packages/Intel/tools/i586-poky-linux-uclibc/1.6.2+1.0/i586
+        Then execute the following: gedit install_script.sh
+        On the opened file search for the lines which start with "executable_files" and change the "+111" characters for "/111"
+        After saving, go back to the terminal and execute ./install_script.sh
+
+Enjoy your working intel galileo gen2 bord!
+
+
+To resolve permission denied error temporarily 
+run this code;
+sudo chmod 666 /dev/ttyACM0 to give Read-write access to the port.
+
+This fixes the error temporarily, but whenever you disconnect the galileo you would have to run this code again.
+
+To make this permanent, do the following.
+run the following code
+
+sudo usermod -a -G dialout victor {if your username is victor}
+
+Restart your computer and you are all setup to use Intel Arduino on ubuntu... Voila.
+
