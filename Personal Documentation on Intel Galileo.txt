@@ -39,6 +39,24 @@ The steps I have followed are:
         Then execute the following: gedit install_script.sh
         On the opened file search for the lines which start with "executable_files" and change the "+111" characters for "/111"
         After saving, go back to the terminal and execute ./install_script.sh
+        
+        for intel galileo the newer version, you might get an error like this,
+        ERROR: could not relocate %s, interp size = %i and %i is needed." % (elf_file_name, p_memsz, len(new_dl_path) + 1)
+        to fix the error, go to the root of the ardunio directory
+        that is /.arduino15/
+        the use the 'find' command to search for the file 'relocate_sdk.py'
+        >> find -name 'relocate_sdk.py'
+        this returns the path of the path
+        ./packages/Intel/tools/i586-poky-linux-uclibc/1.6.2+1.0/i586/
+        navigate to the path above and edit the first line of the 'relocate_sdk.py'
+        change '!/usr/bin/env python' to '!/usr/bin/env python2'
+        
+        go back to the folder containing the 'install_script.sh'
+        you can use the 'find -name 'install_script.sh' command to bring up the path to the 'install_script.sh'
+        the run the command
+        >> ./install_script.sh
+        again.
+        you should be finally set up and ready to go.
 
 Enjoy your working intel galileo gen2 bord!
 
